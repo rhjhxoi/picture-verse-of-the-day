@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <title>Get a picture-verse of the day from the bible</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+<script>
+    $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('https://bible.com/ru/verse-of-the-day') + '&callback=?', function(data){
+        let source = data.contents;
+        let end = source.indexOf("?version=");
+        let start = end - 1;
+        while (source[start - 1] != "/") {
+            start = start - 1;
+        }
+        window.location.replace("https://imageproxy-cdn.youversionapi.com/640x640/https://s3.amazonaws.com/static-youversionapi-com/images/base/" + source.slice(start, end) + "/1280x1280.jpg");
+    });
+</script>
+</html>
